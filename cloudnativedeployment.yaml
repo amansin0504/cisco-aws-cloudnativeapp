@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: 904585389016.dkr.ecr.us-east-2.amazonaws.com/safecloudnativeapp:release-${env.BUILD_NUMBER}
+        ports:
+        - containerPort: 80
+
